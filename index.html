@@ -6,8 +6,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE DESIGNER BD</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyCwR0szJFItDBVEQ2AmL5TzN1",
+authDomain: "the-designer-bd.firebaseapp.com",
+projectId: "the-designer-bd",
+storageBucket: "the-designer-bd.appspot.com",
+messagingSenderId: "828995401927",
+appId: "1:828995401927:web:f91e1bd9aeed",
+measurementId: "G-3DLWJY6VG8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.saveOrder = async function(data){
+
+await addDoc(collection(db,"orders"),{
+name:data.name,
+email:data.email,
+service:data.service,
+details:data.details,
+trx:data.trx,
+time:new Date()
+});
+
+}
+
+</script>
 
 <style>
 
@@ -153,22 +189,6 @@ position:relative;
 overflow:hidden;
 }
 
-.btn::before{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:rgba(255,255,255,0.25);
-transform:skewX(25deg);
-transition:.5s;
-}
-
-.btn:hover::before{
-left:120%;
-}
-
 .btn:hover{
 transform:scale(1.08);
 box-shadow:0 0 45px #d580ff;
@@ -203,25 +223,6 @@ border-radius:28px;
 border:1px solid rgba(255,255,255,0.1);
 transition:0.5s;
 text-align:center;
-position:relative;
-overflow:hidden;
-}
-
-.card::before{
-content:"";
-position:absolute;
-top:-100%;
-left:-100%;
-width:250%;
-height:250%;
-background:linear-gradient(45deg,transparent,#d580ff22,transparent);
-transform:rotate(25deg);
-transition:0.7s;
-}
-
-.card:hover::before{
-top:100%;
-left:100%;
 }
 
 .card:hover{
@@ -303,13 +304,6 @@ background:#12001f;
 color:white;
 font-size:17px;
 outline:none;
-transition:.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-box-shadow:0 0 20px #a020f0;
 }
 
 button{
@@ -323,7 +317,6 @@ color:white;
 font-size:20px;
 font-weight:bold;
 cursor:pointer;
-transition:.4s;
 }
 
 button:hover{
@@ -380,8 +373,6 @@ font-size:30px;
 color:#e8b3ff;
 margin-bottom:10px;
 }
-
-/* MOBILE */
 
 @media(max-width:768px){
 
@@ -482,20 +473,20 @@ Premium Graphic Design Services
 
 <form id="orderForm">
 
-<input type="text" placeholder="Your Name" required>
+<input type="text" id="name" placeholder="Your Name" required>
 
-<input type="email" placeholder="Your Email" required>
+<input type="email" id="email" placeholder="Your Email" required>
 
-<select required>
+<select id="service" required>
 <option>Logo Design</option>
 <option>Banner Design</option>
 <option>Thumbnail Design</option>
 <option>Poster Design</option>
 </select>
 
-<textarea rows="5" placeholder="Describe your design"></textarea>
+<textarea rows="5" id="details" placeholder="Describe your design"></textarea>
 
-<input type="text" placeholder="Bkash Transaction ID">
+<input type="text" id="trx" placeholder="Bkash Transaction ID">
 
 <button type="submit">Confirm Order</button>
 
@@ -529,14 +520,24 @@ Premium Graphic Design Services
 
 </footer>
 
-<script>
+<script type="module">
 
 const form=document.getElementById("orderForm");
 const popup=document.getElementById("popup");
 
-form.addEventListener("submit",function(e){
+form.addEventListener("submit",async function(e){
 
 e.preventDefault();
+
+const data = {
+name:document.getElementById("name").value,
+email:document.getElementById("email").value,
+service:document.getElementById("service").value,
+details:document.getElementById("details").value,
+trx:document.getElementById("trx").value
+};
+
+await window.saveOrder(data);
 
 popup.classList.add("active");
 
