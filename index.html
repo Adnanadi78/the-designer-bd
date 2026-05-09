@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +16,15 @@ scroll-behavior:smooth;
 }
 
 body{
-background:green !important;
+background:linear-gradient(135deg,#120000,#1f0000,#300000,#4d0000);
 background-size:400% 400%;
-animation:bgMove 15s ease infinite;
+animation:bgMove 12s ease infinite;
 color:white;
 overflow-x:hidden;
 position:relative;
 }
+
+/* BACKGROUND ANIMATION */
 
 @keyframes bgMove{
 0%{background-position:0% 50%;}
@@ -35,15 +32,15 @@ position:relative;
 100%{background-position:0% 50%;}
 }
 
-/* FLOATING LIGHTS */
+/* PARTICLES */
 
-.light{
+.particle{
 position:fixed;
 width:10px;
 height:10px;
+background:#ff1a1a;
 border-radius:50%;
-background:white;
-box-shadow:0 0 25px white;
+box-shadow:0 0 20px red;
 animation:float 12s linear infinite;
 opacity:.7;
 z-index:-1;
@@ -62,65 +59,73 @@ transform:translateY(-120vh) scale(1.8);
 
 header{
 text-align:center;
-padding:100px 20px;
-backdrop-filter:blur(12px);
-background:rgba(255,255,255,0.05);
-border-bottom:1px solid rgba(255,255,255,0.1);
-animation:fadeIn 2s ease;
+padding:90px 20px;
+position:relative;
 }
 
-@keyframes fadeIn{
+/* SIDE LOGO */
+
+.side-logo-left,
+.side-logo-right{
+position:absolute;
+top:40px;
+width:120px;
+animation:spin 8s linear infinite;
+filter:drop-shadow(0 0 20px red);
+}
+
+.side-logo-left{
+left:20px;
+}
+
+.side-logo-right{
+right:20px;
+}
+
+@keyframes spin{
 from{
-opacity:0;
-transform:translateY(-40px);
+transform:rotate(0deg);
 }
 to{
-opacity:1;
-transform:translateY(0);
+transform:rotate(360deg);
 }
 }
+
+/* MAIN LOGO */
 
 .logo{
 width:180px;
 height:180px;
 border-radius:50%;
 object-fit:cover;
-border:4px solid #ff00ff;
+border:4px solid red;
 box-shadow:
-0 0 20px #ff00ff,
-0 0 40px #00ffff,
-0 0 60px #ff00ff;
-animation:logoSpin 10s linear infinite;
+0 0 20px red,
+0 0 40px #ff3333,
+0 0 60px #ff6666;
+animation:pulse 2s infinite;
 }
 
-@keyframes logoSpin{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.05);}
+100%{transform:scale(1);}
 }
 
 header h1{
 font-size:65px;
 margin-top:25px;
-background:linear-gradient(90deg,#ff00ff,#00ffff,#ffcc00);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:textGlow 3s infinite alternate;
-}
-
-@keyframes textGlow{
-from{
-filter:drop-shadow(0 0 10px #ff00ff);
-}
-to{
-filter:drop-shadow(0 0 25px #00ffff);
-}
+color:#ff4d4d;
+text-shadow:
+0 0 10px red,
+0 0 30px #ff1a1a;
 }
 
 .typing{
 margin-top:15px;
 font-size:24px;
-color:#ddd;
-animation:fadeText 3s infinite alternate;
+color:#ffd6d6;
+animation:fadeText 2s infinite alternate;
 }
 
 @keyframes fadeText{
@@ -139,22 +144,14 @@ text-decoration:none;
 font-size:20px;
 font-weight:bold;
 color:white;
-background:linear-gradient(45deg,#ff00ff,#00ffff,#ff9900);
-background-size:300% 300%;
-animation:btnMove 5s infinite;
-box-shadow:0 0 25px #ff00ff;
+background:linear-gradient(45deg,#ff0000,#990000,#ff3333);
+box-shadow:0 0 25px red;
 transition:.4s;
 }
 
 .btn:hover{
 transform:scale(1.08);
-box-shadow:0 0 40px #00ffff;
-}
-
-@keyframes btnMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+box-shadow:0 0 45px #ff1a1a;
 }
 
 /* SECTION TITLE */
@@ -164,7 +161,7 @@ text-align:center;
 font-size:48px;
 margin:70px 0 40px;
 color:white;
-text-shadow:0 0 25px #00ffff;
+text-shadow:0 0 25px red;
 }
 
 /* CARDS */
@@ -177,39 +174,20 @@ padding:0 35px;
 }
 
 .card{
-background:rgba(255,255,255,0.07);
-border:1px solid rgba(255,255,255,0.15);
+background:rgba(255,255,255,0.06);
 padding:28px;
 border-radius:30px;
 text-align:center;
-backdrop-filter:blur(12px);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.1);
 transition:.5s;
-position:relative;
-overflow:hidden;
-}
-
-.card::before{
-content:"";
-position:absolute;
-top:-100%;
-left:-100%;
-width:300%;
-height:300%;
-background:linear-gradient(45deg,transparent,#ffffff22,transparent);
-transform:rotate(45deg);
-transition:.8s;
-}
-
-.card:hover::before{
-top:100%;
-left:100%;
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.03);
+transform:translateY(-12px) scale(1.03);
 box-shadow:
-0 0 20px #ff00ff,
-0 0 40px #00ffff;
+0 0 25px red,
+0 0 40px #ff3333;
 }
 
 .card img{
@@ -221,12 +199,11 @@ margin-bottom:18px;
 .card h3{
 font-size:26px;
 margin-bottom:10px;
-color:white;
 }
 
 .price{
 font-size:22px;
-color:#ffcc00;
+color:#ff9999;
 }
 
 /* PAYMENT + FORM */
@@ -240,17 +217,11 @@ padding:70px 20px;
 form{
 max-width:700px;
 margin:auto;
-background:rgba(255,255,255,0.07);
+background:rgba(255,255,255,0.06);
 padding:40px;
 border-radius:30px;
 backdrop-filter:blur(15px);
-box-shadow:0 0 35px rgba(255,255,255,0.15);
-}
-
-.payment-box h2,
-.payment-box p,
-.payment-box h1{
-color:white;
+box-shadow:0 0 35px rgba(255,0,0,.25);
 }
 
 input,
@@ -261,7 +232,7 @@ padding:18px;
 margin-top:18px;
 border:none;
 border-radius:15px;
-background:#0f0f1f;
+background:#1a0000;
 color:white;
 font-size:17px;
 outline:none;
@@ -277,15 +248,13 @@ font-size:20px;
 font-weight:bold;
 cursor:pointer;
 color:white;
-background:linear-gradient(45deg,#ff00ff,#00ffff,#ff9900);
-background-size:300% 300%;
-animation:btnMove 5s infinite;
+background:linear-gradient(45deg,#ff0000,#990000,#ff3333);
+box-shadow:0 0 20px red;
 transition:.4s;
 }
 
 button:hover{
 transform:scale(1.05);
-box-shadow:0 0 35px #00ffff;
 }
 
 /* POPUP */
@@ -295,24 +264,19 @@ position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%) scale(0);
-background:#111122;
+background:#1a0000;
 padding:45px;
 border-radius:30px;
 text-align:center;
 width:90%;
 max-width:550px;
 z-index:999;
-box-shadow:0 0 50px #00ffff;
+box-shadow:0 0 50px red;
 transition:.4s;
 }
 
 .popup.active{
 transform:translate(-50%,-50%) scale(1);
-}
-
-.popup h2,
-.popup p{
-color:white;
 }
 
 /* FOOTER */
@@ -321,14 +285,8 @@ footer{
 text-align:center;
 padding:40px;
 margin-top:70px;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(10px);
-border-top:1px solid rgba(255,255,255,0.1);
-}
-
-footer h2,
-footer p{
-color:white;
+background:rgba(0,0,0,.4);
+border-top:1px solid rgba(255,255,255,.1);
 }
 
 /* RESPONSIVE */
@@ -344,6 +302,12 @@ width:140px;
 height:140px;
 }
 
+.side-logo-left,
+.side-logo-right{
+width:70px;
+top:20px;
+}
+
 .section-title{
 font-size:34px;
 }
@@ -355,13 +319,23 @@ font-size:34px;
 
 <body>
 
-<div class="light" style="left:10%;animation-delay:0s;"></div>
-<div class="light" style="left:30%;animation-delay:2s;"></div>
-<div class="light" style="left:50%;animation-delay:4s;"></div>
-<div class="light" style="left:70%;animation-delay:1s;"></div>
-<div class="light" style="left:90%;animation-delay:3s;"></div>
+<!-- PARTICLES -->
+
+<div class="particle" style="left:10%;animation-delay:0s;"></div>
+<div class="particle" style="left:20%;animation-delay:2s;"></div>
+<div class="particle" style="left:40%;animation-delay:4s;"></div>
+<div class="particle" style="left:60%;animation-delay:1s;"></div>
+<div class="particle" style="left:80%;animation-delay:3s;"></div>
 
 <header>
+
+<!-- SIDE LOGO -->
+
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="side-logo-left">
+
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="side-logo-right">
+
+<!-- MAIN LOGO -->
 
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="logo">
 
@@ -371,9 +345,12 @@ font-size:34px;
 Premium Professional Graphic Design Services
 </div>
 
-<a href="#order" class="btn">ORDER NOW</a>
+<a href="#order" class="btn">
+ORDER NOW
+</a>
 
 </header>
+
 <h2 class="section-title">
 Our Premium Services
 </h2>
@@ -381,25 +358,25 @@ Our Premium Services
 <section class="grid">
 
 <div class="card">
-<img src="logo.png">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Logo Design</h3>
 <p class="price">500৳</p>
 </div>
 
 <div class="card">
-<img src="logo.png">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Banner Design</h3>
 <p class="price">400৳</p>
 </div>
 
 <div class="card">
-<img src="logo.png">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Thumbnail Design</h3>
 <p class="price">300৳</p>
 </div>
 
 <div class="card">
-<img src="logo.png">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Poster Design</h3>
 <p class="price">350৳</p>
 </div>
@@ -422,7 +399,9 @@ Our Premium Services
 
 <br>
 
-<p>✅ Send Payment Before Confirm Order</p>
+<p>
+✅ Send Payment Before Confirm Order
+</p>
 
 </div>
 
@@ -441,6 +420,7 @@ Place Your Order
 <input type="email" id="email" placeholder="Your Email" required>
 
 <select id="service" required>
+<option value="">Select Service</option>
 <option>Logo Design</option>
 <option>Banner Design</option>
 <option>Thumbnail Design</option>
@@ -468,8 +448,7 @@ Confirm Order
 <p>
 ✅ Your order has been received successfully.<br><br>
 📦 Delivery Time: 24-48 Hours.<br><br>
-📧 Email notification sent successfully.<br><br>
-💜 Thank you for choosing THE DESIGNER BD
+💌 We will contact you soon.
 </p>
 
 </div>
@@ -484,95 +463,22 @@ Ultra Premium Animated Website
 
 </footer>
 
-<!-- EMAILJS -->
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<!-- FIREBASE -->
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-/* FIREBASE CONFIG */
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyXXXXXXXXXXXXXXXX",
-
-authDomain: "designerbd.firebaseapp.com",
-
-projectId: "designerbd",
-
-storageBucket: "designerbd.appspot.com",
-
-messagingSenderId: "123456789",
-
-appId: "1:123456789:web:abcdef"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-/* EMAILJS */
-
-emailjs.init("ZmKVslMaVYKQNWXA6");
-
-/* FORM */
+<script>
 
 const form = document.getElementById("orderForm");
 
 const popup = document.getElementById("popup");
 
-form.addEventListener("submit", async (e)=>{
+form.addEventListener("submit",(e)=>{
 
 e.preventDefault();
 
-const orderData = {
+const trx = document.getElementById("trx").value;
 
-name:document.getElementById("name").value,
-
-email:document.getElementById("email").value,
-
-service:document.getElementById("service").value,
-
-description:document.getElementById("description").value,
-
-trx:document.getElementById("trx").value,
-
-time:new Date()
-
-};
-
-/* SAVE TO FIREBASE */
-
-await addDoc(collection(db,"orders"),orderData);
-
-/* SEND EMAIL */
-
-emailjs.send(
-"service_jj7w73q",
-"template_h8h65hq",
-{
-name: orderData.name,
-email: orderData.email,
-message:
-"New Order Received\n\n" +
-"Service: " + orderData.service + "\n" +
-"Transaction ID: " + orderData.trx + "\n" +
-"Description: " + orderData.description
+if(trx.trim()===""){
+alert("Transaction ID Required!");
+return;
 }
-);
-
-/* POPUP */
 
 popup.classList.add("active");
 
