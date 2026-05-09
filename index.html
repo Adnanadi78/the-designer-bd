@@ -5,106 +5,266 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE DESIGNER BD</title>
+
 <style>
+
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#0d0d0d;
-    color:white;
+margin:0;
+font-family:Arial,sans-serif;
+background:#0d0d0d;
+color:white;
+scroll-behavior:smooth;
 }
+
 header{
-    background:linear-gradient(135deg,#111,#1f1f1f);
-    padding:40px 20px;
-    text-align:center;
-    border-bottom:2px solid gold;
+background:linear-gradient(135deg,#111,#1f1f1f);
+padding:40px 20px;
+text-align:center;
+border-bottom:2px solid #a020f0;
 }
+
+.banner{
+width:100%;
+border-radius:20px;
+margin-bottom:25px;
+box-shadow:0 0 25px rgba(160,32,240,0.5);
+}
+
 header h1{
-    font-size:50px;
-    color:gold;
-    margin:10px 0;
+font-size:55px;
+color:#c56cff;
+margin:10px 0;
+text-shadow:0 0 15px rgba(197,108,255,0.7);
 }
+
 header p{
-    color:#ddd;
-    font-size:18px;
+font-size:20px;
+color:#ddd;
 }
-.services{
-    padding:40px 20px;
-}
-.services h2{
-    text-align:center;
-    color:gold;
-    margin-bottom:30px;
-    font-size:36px;
-}
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-.card{
-    background:#1a1a1a;
-    padding:20px;
-    border-radius:15px;
-    border:1px solid #333;
-    text-align:center;
-    transition:.3s;
-}
-.card:hover{
-    transform:translateY(-5px);
-    border-color:gold;
-}
-.card h3{
-    color:gold;
-}
-footer{
-    text-align:center;
-    padding:25px;
-    background:#111;
-    border-top:2px solid gold;
-}
+
 .btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 25px;
-    background:gold;
-    color:black;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:bold;
+display:inline-block;
+margin-top:20px;
+padding:15px 35px;
+background:#a020f0;
+color:white;
+text-decoration:none;
+border-radius:50px;
+font-weight:bold;
+font-size:18px;
+transition:0.3s;
+box-shadow:0 0 20px rgba(160,32,240,0.6);
 }
+
+.btn:hover{
+background:#c56cff;
+transform:scale(1.08);
+}
+
+.services{
+padding:50px 20px;
+}
+
+.services h2{
+text-align:center;
+color:#c56cff;
+font-size:42px;
+margin-bottom:35px;
+text-shadow:0 0 12px rgba(197,108,255,0.6);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.card{
+background:#161616;
+padding:35px;
+border-radius:20px;
+text-align:center;
+border:1px solid #333;
+transition:0.3s;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#a020f0;
+box-shadow:0 0 25px rgba(160,32,240,0.5);
+}
+
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.card h3{
+color:#c56cff;
+font-size:22px;
+}
+
+.price{
+color:#aaa;
+margin-top:10px;
+}
+
+.order-btn{
+display:inline-block;
+margin-top:15px;
+padding:10px 20px;
+background:#a020f0;
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-size:15px;
+}
+
+.payment{
+padding:50px 20px;
+text-align:center;
+background:#111;
+margin-top:40px;
+}
+
+.payment h2{
+color:#c56cff;
+font-size:40px;
+}
+
+.payment-box{
+max-width:500px;
+margin:auto;
+background:#161616;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(160,32,240,0.4);
+}
+
+.payment-box input,
+.payment-box select{
+width:100%;
+padding:15px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#222;
+color:white;
+font-size:16px;
+}
+
+.payment-box button{
+margin-top:20px;
+padding:15px 30px;
+background:#a020f0;
+color:white;
+border:none;
+border-radius:30px;
+font-size:18px;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#111;
+margin-top:40px;
+border-top:1px solid #333;
+}
+
+footer h3{
+color:#c56cff;
+}
+
 </style>
 </head>
+
 <body>
 
 <header>
-    <h1>THE DESIGNER BD</h1>
-    <p>Professional Graphic Design Services</p>
-    <a class="btn" href="#">Inbox Now</a>
+
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="banner">
+
+<h1>THE DESIGNER BD</h1>
+
+<p>Professional Graphic Design Services</p>
+
+<a class="btn" href="#payment">Order Now</a>
+
 </header>
 
 <section class="services">
-    <h2>Our Services</h2>
-    <div class="grid">
-        <div class="card"><h3>YouTube Thumbnail</h3></div>
-        <div class="card"><h3>Facebook Post Design</h3></div>
-        <div class="card"><h3>Instagram Post Design</h3></div>
-        <div class="card"><h3>Facebook Carousel</h3></div>
-        <div class="card"><h3>Social Media Banner</h3></div>
-        <div class="card"><h3>Logo Design</h3></div>
-        <div class="card"><h3>YouTube Channel Banner</h3></div>
-        <div class="card"><h3>Gaming Thumbnail</h3></div>
-        <div class="card"><h3>Poster / Flyer Design</h3></div>
-        <div class="card"><h3>Business Card Design</h3></div>
-        <div class="card"><h3>CV / Resume Design</h3></div>
-        <div class="card"><h3>Photo Editing & Retouch</h3></div>
-        <div class="card"><h3>Cinematic Photo Edit</h3></div>
-        <div class="card"><h3>Product Promotion Post</h3></div>
-    </div>
+
+<h2>Our Services</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+<h3>YouTube Thumbnail</h3>
+<p class="price">Price: 300৳</p>
+<a class="order-btn" href="#payment">Select</a>
+</div>
+
+<div class="card">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+<h3>Logo Design</h3>
+<p class="price">Price: 500৳</p>
+<a class="order-btn" href="#payment">Select</a>
+</div>
+
+<div class="card">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+<h3>Facebook Banner</h3>
+<p class="price">Price: 400৳</p>
+<a class="order-btn" href="#payment">Select</a>
+</div>
+
+<div class="card">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+<h3>Poster Design</h3>
+<p class="price">Price: 350৳</p>
+<a class="order-btn" href="#payment">Select</a>
+</div>
+
+</div>
+
+</section>
+
+<section class="payment" id="payment">
+
+<h2>Confirm Your Order</h2>
+
+<div class="payment-box">
+
+<input type="text" placeholder="Your Name">
+
+<input type="text" placeholder="Your Facebook / WhatsApp">
+
+<select>
+<option>Select Service</option>
+<option>YouTube Thumbnail</option>
+<option>Logo Design</option>
+<option>Facebook Banner</option>
+<option>Poster Design</option>
+</select>
+
+<input type="text" placeholder="Payment Number">
+
+<button>Confirm Order</button>
+
+</div>
+
 </section>
 
 <footer>
-    <h3>THE DESIGNER BD</h3>
-    <p>HD & Professional Quality | Fast Delivery | Custom Design</p>
+
+<h3>THE DESIGNER BD</h3>
+
+<p>HD Quality | Fast Delivery | 24/7 Support</p>
+
 </footer>
 
 </body>
