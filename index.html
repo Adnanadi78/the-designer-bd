@@ -22,7 +22,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ANIMATED BACKGROUND */
+/* BACKGROUND */
 
 body::before{
 content:"";
@@ -46,37 +46,37 @@ z-index:-1;
 
 header{
 text-align:center;
-padding:80px 20px;
+padding:70px 20px;
 background:linear-gradient(135deg,#14001f,#25003a,#3d0052);
 border-bottom:2px solid #a020f0;
-animation:fadeIn 2s;
 }
 
-.banner{
-width:100%;
-max-width:900px;
-border-radius:25px;
-box-shadow:0 0 35px rgba(160,32,240,0.6);
-animation:float 4s ease-in-out infinite;
+/* ROTATING LOGO */
+
+.logo{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+animation:spin 8s linear infinite, glow 2s infinite alternate;
+box-shadow:0 0 35px #a020f0;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0);}
-}
-
-header h1{
-font-size:65px;
-margin-top:25px;
-color:#d580ff;
-text-shadow:0 0 25px #a020f0;
-animation:glow 2s infinite alternate;
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
 @keyframes glow{
-from{text-shadow:0 0 10px #a020f0;}
-to{text-shadow:0 0 35px #d580ff;}
+from{box-shadow:0 0 15px #a020f0;}
+to{box-shadow:0 0 45px #d580ff;}
+}
+
+header h1{
+font-size:60px;
+margin-top:25px;
+color:#d580ff;
+text-shadow:0 0 20px #a020f0;
 }
 
 header p{
@@ -109,17 +109,14 @@ transform:scale(1.08);
 background:#c56cff;
 }
 
-/* SECTION TITLE */
+/* SERVICES */
 
 .section-title{
 text-align:center;
 font-size:45px;
 margin:70px 0 35px;
 color:#d580ff;
-text-shadow:0 0 20px #a020f0;
 }
-
-/* SERVICES */
 
 .grid{
 display:grid;
@@ -135,26 +132,6 @@ border-radius:25px;
 text-align:center;
 border:1px solid #333;
 transition:0.4s;
-position:relative;
-overflow:hidden;
-animation:fadeInUp 1s;
-}
-
-.card::before{
-content:"";
-position:absolute;
-top:-100%;
-left:-100%;
-width:200%;
-height:200%;
-background:linear-gradient(45deg,transparent,#a020f055,transparent);
-transform:rotate(25deg);
-transition:0.5s;
-}
-
-.card:hover::before{
-top:100%;
-left:100%;
 }
 
 .card:hover{
@@ -180,19 +157,32 @@ color:#ccc;
 font-size:18px;
 }
 
-.select-btn{
-display:inline-block;
-margin-top:15px;
-padding:12px 25px;
-background:#a020f0;
-color:white;
-text-decoration:none;
-border-radius:30px;
-transition:0.3s;
+/* PAYMENT */
+
+.payment{
+padding:60px 20px;
+text-align:center;
 }
 
-.select-btn:hover{
-background:#c56cff;
+.payment-box{
+max-width:650px;
+margin:auto;
+background:#161616;
+padding:35px;
+border-radius:25px;
+border:1px solid #333;
+box-shadow:0 0 25px rgba(160,32,240,0.3);
+}
+
+.payment-box h2{
+color:#d580ff;
+margin-bottom:20px;
+font-size:38px;
+}
+
+.payment-box p{
+margin-top:10px;
+font-size:20px;
 }
 
 /* ORDER FORM */
@@ -209,7 +199,6 @@ padding:35px;
 border-radius:25px;
 border:1px solid #333;
 box-shadow:0 0 25px rgba(160,32,240,0.3);
-animation:fadeIn 1.5s;
 }
 
 input,textarea,select{
@@ -242,26 +231,37 @@ background:#c56cff;
 transform:scale(1.03);
 }
 
-/* ORDER DISPLAY */
+/* SUCCESS POPUP */
 
-#orders{
-max-width:750px;
-margin:40px auto;
-padding:0 20px;
-}
-
-.order-box{
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
 background:#161616;
-padding:25px;
-margin-top:20px;
-border-radius:20px;
-border:1px solid #333;
-animation:fadeInUp 1s;
+padding:40px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 40px rgba(160,32,240,0.6);
+z-index:999;
+transition:0.4s;
+width:90%;
+max-width:500px;
 }
 
-.order-box h3{
+.popup.active{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
 color:#d580ff;
-margin-bottom:10px;
+margin-bottom:15px;
+font-size:35px;
+}
+
+.popup p{
+font-size:18px;
+line-height:1.7;
 }
 
 /* FOOTER */
@@ -279,30 +279,6 @@ color:#d580ff;
 margin-bottom:10px;
 }
 
-/* ANIMATIONS */
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes fadeInUp{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
 </style>
 </head>
 
@@ -310,11 +286,11 @@ transform:translateY(0);
 
 <header>
 
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="banner">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="logo">
 
 <h1>THE DESIGNER BD</h1>
 
-<p>Professional Graphic Design Services</p>
+<p>Premium Graphic Design Services</p>
 
 <a href="#order" class="btn">ORDER NOW</a>
 
@@ -328,28 +304,40 @@ transform:translateY(0);
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Logo Design</h3>
 <p class="price">500৳</p>
-<a href="#order" class="select-btn">Select</a>
 </div>
 
 <div class="card">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Banner Design</h3>
 <p class="price">400৳</p>
-<a href="#order" class="select-btn">Select</a>
 </div>
 
 <div class="card">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Thumbnail Design</h3>
 <p class="price">300৳</p>
-<a href="#order" class="select-btn">Select</a>
 </div>
 
 <div class="card">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Poster Design</h3>
 <p class="price">350৳</p>
-<a href="#order" class="select-btn">Select</a>
+</div>
+
+</section>
+
+<section class="payment">
+
+<div class="payment-box">
+
+<h2>Payment Method</h2>
+
+<p>📱 Bkash Number:</p>
+
+<p><b>01990756529</b></p>
+
+<p>✅ Send Payment Before Confirm Order</p>
+
 </div>
 
 </section>
@@ -360,16 +348,20 @@ transform:translateY(0);
 
 <form id="orderForm">
 
-<input type="text" id="name" placeholder="Your Name" required>
+<input type="text" placeholder="Your Name" required>
 
-<select id="service">
+<input type="email" placeholder="Your Email" required>
+
+<select required>
 <option>Logo Design</option>
 <option>Banner Design</option>
 <option>Thumbnail Design</option>
 <option>Poster Design</option>
 </select>
 
-<textarea id="details" rows="5" placeholder="Describe your design"></textarea>
+<textarea rows="5" placeholder="Describe your design"></textarea>
+
+<input type="text" placeholder="Bkash Transaction ID">
 
 <button type="submit">Confirm Order</button>
 
@@ -377,7 +369,21 @@ transform:translateY(0);
 
 </section>
 
-<div id="orders"></div>
+<div class="popup" id="popup">
+
+<h2>🎉 Thanks For Your Order</h2>
+
+<p>
+✅ Your order has been received successfully.<br><br>
+
+📦 Delivery Time: 24 Hours to 48 Hours<br><br>
+
+📧 A confirmation notification will be sent to your email.<br><br>
+
+💜 Thank you for choosing THE DESIGNER BD
+</p>
+
+</div>
 
 <footer>
 
@@ -389,28 +395,19 @@ transform:translateY(0);
 
 <script>
 
-document.getElementById("orderForm").addEventListener("submit", function(e){
+const form=document.getElementById("orderForm");
+const popup=document.getElementById("popup");
+
+form.addEventListener("submit",function(e){
 
 e.preventDefault();
 
-let name=document.getElementById("name").value;
-let service=document.getElementById("service").value;
-let details=document.getElementById("details").value;
+popup.classList.add("active");
 
-let box=document.createElement("div");
-
-box.classList.add("order-box");
-
-box.innerHTML=`
-<h3>New Order Received</h3>
-<p><b>Name:</b> ${name}</p>
-<p><b>Service:</b> ${service}</p>
-<p><b>Details:</b> ${details}</p>
-`;
-
-document.getElementById("orders").appendChild(box);
-
-document.getElementById("orderForm").reset();
+setTimeout(()=>{
+popup.classList.remove("active");
+form.reset();
+},6000);
 
 });
 
