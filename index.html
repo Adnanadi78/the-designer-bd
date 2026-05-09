@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE DESIGNER BD</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <style>
 
 *{
@@ -17,12 +20,12 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#0b0014;
+background:#06000d;
 color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* ANIMATED BACKGROUND */
 
 body::before{
 content:"";
@@ -31,10 +34,10 @@ width:200%;
 height:200%;
 background:
 radial-gradient(circle,#a020f033 10%,transparent 10%),
-radial-gradient(circle,#c56cff22 10%,transparent 10%);
+radial-gradient(circle,#d580ff22 10%,transparent 10%);
 background-size:120px 120px;
-animation:bgmove 20s linear infinite;
-z-index:-1;
+animation:bgmove 18s linear infinite;
+z-index:-3;
 }
 
 @keyframes bgmove{
@@ -42,24 +45,50 @@ z-index:-1;
 100%{transform:translate(-120px,-120px);}
 }
 
+/* FLOATING LIGHTS */
+
+.light{
+position:fixed;
+width:8px;
+height:8px;
+background:#d580ff;
+border-radius:50%;
+box-shadow:0 0 20px #d580ff;
+animation:floatLight 8s linear infinite;
+opacity:.6;
+z-index:-2;
+}
+
+@keyframes floatLight{
+0%{
+transform:translateY(100vh) scale(0);
+}
+100%{
+transform:translateY(-120vh) scale(1.5);
+}
+}
+
 /* HEADER */
 
 header{
 text-align:center;
-padding:70px 20px;
-background:linear-gradient(135deg,#14001f,#25003a,#3d0052);
+padding:90px 20px;
+background:linear-gradient(135deg,#12001f,#25003d,#3f0066);
 border-bottom:2px solid #a020f0;
+position:relative;
+overflow:hidden;
 }
 
-/* ROTATING LOGO */
+/* LOGO */
 
 .logo{
-width:180px;
-height:180px;
+width:190px;
+height:190px;
 border-radius:50%;
 object-fit:cover;
-animation:spin 8s linear infinite, glow 2s infinite alternate;
-box-shadow:0 0 35px #a020f0;
+animation:spin 10s linear infinite, logoGlow 2s infinite alternate;
+box-shadow:0 0 45px #a020f0;
+border:4px solid #d580ff;
 }
 
 @keyframes spin{
@@ -67,186 +96,257 @@ from{transform:rotate(0deg);}
 to{transform:rotate(360deg);}
 }
 
-@keyframes glow{
-from{box-shadow:0 0 15px #a020f0;}
-to{box-shadow:0 0 45px #d580ff;}
+@keyframes logoGlow{
+from{
+box-shadow:0 0 20px #a020f0;
+}
+to{
+box-shadow:0 0 60px #d580ff;
+}
 }
 
 header h1{
-font-size:60px;
-margin-top:25px;
-color:#d580ff;
-text-shadow:0 0 20px #a020f0;
+font-size:70px;
+margin-top:30px;
+color:#e8b3ff;
+text-shadow:0 0 30px #a020f0;
+animation:titleGlow 2s infinite alternate;
 }
 
-header p{
-font-size:22px;
-margin-top:10px;
-color:#ddd;
+@keyframes titleGlow{
+from{text-shadow:0 0 15px #a020f0;}
+to{text-shadow:0 0 40px #d580ff;}
 }
+
+.typing{
+margin-top:15px;
+font-size:24px;
+color:#ddd;
+overflow:hidden;
+white-space:nowrap;
+border-right:3px solid #d580ff;
+width:0;
+margin-inline:auto;
+animation:typing 5s steps(40,end) infinite alternate;
+}
+
+@keyframes typing{
+from{width:0;}
+to{width:420px;}
+}
+
+/* BUTTON */
 
 .btn{
 display:inline-block;
-margin-top:30px;
-padding:16px 40px;
-background:#a020f0;
+margin-top:35px;
+padding:18px 45px;
+background:linear-gradient(45deg,#a020f0,#d580ff);
 color:white;
 text-decoration:none;
 border-radius:50px;
-font-size:18px;
+font-size:20px;
 font-weight:bold;
 transition:0.4s;
-animation:btnGlow 2s infinite alternate;
+box-shadow:0 0 25px #a020f0;
+position:relative;
+overflow:hidden;
 }
 
-@keyframes btnGlow{
-from{box-shadow:0 0 10px #a020f0;}
-to{box-shadow:0 0 30px #d580ff;}
+.btn::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:rgba(255,255,255,0.25);
+transform:skewX(25deg);
+transition:.5s;
+}
+
+.btn:hover::before{
+left:120%;
 }
 
 .btn:hover{
 transform:scale(1.08);
-background:#c56cff;
+box-shadow:0 0 45px #d580ff;
 }
 
-/* SERVICES */
+/* TITLES */
 
 .section-title{
 text-align:center;
-font-size:45px;
-margin:70px 0 35px;
-color:#d580ff;
+font-size:48px;
+margin:80px 0 40px;
+color:#e8b3ff;
+text-shadow:0 0 25px #a020f0;
 }
+
+/* GRID */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:0 30px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+padding:0 35px;
 }
 
+/* CARD */
+
 .card{
-background:#161616;
-padding:25px;
-border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+padding:28px;
+border-radius:28px;
+border:1px solid rgba(255,255,255,0.1);
+transition:0.5s;
 text-align:center;
-border:1px solid #333;
-transition:0.4s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:-100%;
+left:-100%;
+width:250%;
+height:250%;
+background:linear-gradient(45deg,transparent,#d580ff22,transparent);
+transform:rotate(25deg);
+transition:0.7s;
+}
+
+.card:hover::before{
+top:100%;
+left:100%;
 }
 
 .card:hover{
-transform:translateY(-12px) scale(1.03);
-border-color:#a020f0;
-box-shadow:0 0 30px rgba(160,32,240,0.5);
+transform:translateY(-15px) scale(1.04);
+box-shadow:0 0 40px rgba(213,128,255,0.4);
+border-color:#d580ff;
 }
 
 .card img{
 width:100%;
-border-radius:18px;
-margin-bottom:15px;
+border-radius:20px;
+margin-bottom:18px;
 }
 
 .card h3{
-color:#d580ff;
-font-size:24px;
+font-size:26px;
+color:#f1ccff;
 }
 
 .price{
-margin-top:10px;
-color:#ccc;
-font-size:18px;
+margin-top:12px;
+font-size:20px;
+color:#ddd;
 }
 
 /* PAYMENT */
 
 .payment{
-padding:60px 20px;
+padding:70px 20px;
 text-align:center;
 }
 
 .payment-box{
-max-width:650px;
+max-width:700px;
 margin:auto;
-background:#161616;
-padding:35px;
-border-radius:25px;
-border:1px solid #333;
-box-shadow:0 0 25px rgba(160,32,240,0.3);
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+padding:40px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 35px rgba(160,32,240,0.35);
 }
 
 .payment-box h2{
-color:#d580ff;
+font-size:42px;
+color:#f1ccff;
 margin-bottom:20px;
-font-size:38px;
 }
 
 .payment-box p{
+font-size:22px;
 margin-top:10px;
-font-size:20px;
 }
 
-/* ORDER FORM */
+/* FORM */
 
 .order{
-padding:60px 20px;
+padding:70px 20px;
 }
 
 form{
-max-width:650px;
+max-width:700px;
 margin:auto;
-background:#161616;
-padding:35px;
-border-radius:25px;
-border:1px solid #333;
-box-shadow:0 0 25px rgba(160,32,240,0.3);
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+padding:40px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 35px rgba(160,32,240,0.35);
 }
 
 input,textarea,select{
 width:100%;
-padding:16px;
-margin-top:15px;
+padding:18px;
+margin-top:18px;
 border:none;
-border-radius:14px;
-background:#0d0d0d;
+border-radius:16px;
+background:#12001f;
 color:white;
-font-size:16px;
+font-size:17px;
 outline:none;
+transition:.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+box-shadow:0 0 20px #a020f0;
 }
 
 button{
 width:100%;
-padding:16px;
-margin-top:20px;
+padding:18px;
+margin-top:25px;
 border:none;
-background:#a020f0;
+border-radius:50px;
+background:linear-gradient(45deg,#a020f0,#d580ff);
 color:white;
-font-size:18px;
-border-radius:40px;
+font-size:20px;
+font-weight:bold;
 cursor:pointer;
-transition:0.3s;
+transition:.4s;
 }
 
 button:hover{
-background:#c56cff;
-transform:scale(1.03);
+transform:scale(1.04);
+box-shadow:0 0 35px #d580ff;
 }
 
-/* SUCCESS POPUP */
+/* POPUP */
 
 .popup{
 position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%) scale(0);
-background:#161616;
-padding:40px;
-border-radius:25px;
+background:rgba(20,0,31,0.95);
+padding:45px;
+border-radius:30px;
 text-align:center;
-box-shadow:0 0 40px rgba(160,32,240,0.6);
-z-index:999;
-transition:0.4s;
 width:90%;
-max-width:500px;
+max-width:550px;
+z-index:999;
+box-shadow:0 0 50px rgba(213,128,255,0.5);
+transition:.4s;
 }
 
 .popup.active{
@@ -254,29 +354,55 @@ transform:translate(-50%,-50%) scale(1);
 }
 
 .popup h2{
-color:#d580ff;
-margin-bottom:15px;
-font-size:35px;
+font-size:38px;
+color:#f1ccff;
+margin-bottom:18px;
 }
 
 .popup p{
-font-size:18px;
-line-height:1.7;
+font-size:19px;
+line-height:1.8;
+color:#ddd;
 }
 
 /* FOOTER */
 
 footer{
 text-align:center;
-padding:35px;
-margin-top:60px;
-background:#111;
+padding:40px;
+margin-top:70px;
+background:#0d0016;
 border-top:2px solid #a020f0;
 }
 
 footer h3{
-color:#d580ff;
+font-size:30px;
+color:#e8b3ff;
 margin-bottom:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header h1{
+font-size:45px;
+}
+
+.typing{
+font-size:18px;
+width:280px;
+}
+
+.logo{
+width:150px;
+height:150px;
+}
+
+.section-title{
+font-size:36px;
+}
+
 }
 
 </style>
@@ -284,19 +410,27 @@ margin-bottom:10px;
 
 <body>
 
+<div class="light" style="left:10%; animation-delay:0s;"></div>
+<div class="light" style="left:30%; animation-delay:2s;"></div>
+<div class="light" style="left:50%; animation-delay:4s;"></div>
+<div class="light" style="left:70%; animation-delay:1s;"></div>
+<div class="light" style="left:90%; animation-delay:3s;"></div>
+
 <header>
 
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="logo">
 
 <h1>THE DESIGNER BD</h1>
 
-<p>Premium Graphic Design Services</p>
+<div class="typing">
+Premium Graphic Design Services
+</div>
 
 <a href="#order" class="btn">ORDER NOW</a>
 
 </header>
 
-<h2 class="section-title">Our Services</h2>
+<h2 class="section-title">Our Premium Services</h2>
 
 <section class="grid">
 
@@ -332,7 +466,7 @@ margin-bottom:10px;
 
 <h2>Payment Method</h2>
 
-<p>📱 Bkash Number:</p>
+<p>📱 Bkash Number</p>
 
 <p><b>01990756529</b></p>
 
@@ -374,13 +508,15 @@ margin-bottom:10px;
 <h2>🎉 Thanks For Your Order</h2>
 
 <p>
+
 ✅ Your order has been received successfully.<br><br>
 
-📦 Delivery Time: 24 Hours to 48 Hours<br><br>
+📦 Delivery Time: 24 Hours to 48 Hours.<br><br>
 
-📧 A confirmation notification will be sent to your email.<br><br>
+📧 Confirmation notification will be sent to your email.<br><br>
 
 💜 Thank you for choosing THE DESIGNER BD
+
 </p>
 
 </div>
@@ -389,7 +525,7 @@ margin-bottom:10px;
 
 <h3>THE DESIGNER BD</h3>
 
-<p>Premium Animated Graphic Design Website</p>
+<p>Professional Premium Animated Website</p>
 
 </footer>
 
