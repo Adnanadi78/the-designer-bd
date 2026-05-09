@@ -6,45 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE DESIGNER BD</title>
 
-<!-- FIREBASE -->
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyCwR0szJFItDBVEQ2AmL5TzN1",
-authDomain: "the-designer-bd.firebaseapp.com",
-projectId: "the-designer-bd",
-storageBucket: "the-designer-bd.appspot.com",
-messagingSenderId: "828995401927",
-appId: "1:828995401927:web:f91e1bd9aeed",
-measurementId: "G-3DLWJY6VG8"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.saveOrder = async function(data){
-
-await addDoc(collection(db,"orders"),{
-name:data.name,
-email:data.email,
-service:data.service,
-details:data.details,
-trx:data.trx,
-time:new Date()
-});
-
-}
-
-</script>
-
 <style>
 
 *{
@@ -61,7 +22,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ANIMATED BACKGROUND */
+/* BACKGROUND */
 
 body::before{
 content:"";
@@ -81,7 +42,7 @@ z-index:-3;
 100%{transform:translate(-120px,-120px);}
 }
 
-/* FLOATING LIGHTS */
+/* LIGHTS */
 
 .light{
 position:fixed;
@@ -111,18 +72,14 @@ text-align:center;
 padding:90px 20px;
 background:linear-gradient(135deg,#12001f,#25003d,#3f0066);
 border-bottom:2px solid #a020f0;
-position:relative;
-overflow:hidden;
 }
-
-/* LOGO */
 
 .logo{
 width:190px;
 height:190px;
 border-radius:50%;
 object-fit:cover;
-animation:spin 10s linear infinite, logoGlow 2s infinite alternate;
+animation:spin 10s linear infinite;
 box-shadow:0 0 45px #a020f0;
 border:4px solid #d580ff;
 }
@@ -132,46 +89,18 @@ from{transform:rotate(0deg);}
 to{transform:rotate(360deg);}
 }
 
-@keyframes logoGlow{
-from{
-box-shadow:0 0 20px #a020f0;
-}
-to{
-box-shadow:0 0 60px #d580ff;
-}
-}
-
 header h1{
-font-size:70px;
-margin-top:30px;
+font-size:65px;
+margin-top:25px;
 color:#e8b3ff;
 text-shadow:0 0 30px #a020f0;
-animation:titleGlow 2s infinite alternate;
-}
-
-@keyframes titleGlow{
-from{text-shadow:0 0 15px #a020f0;}
-to{text-shadow:0 0 40px #d580ff;}
 }
 
 .typing{
 margin-top:15px;
-font-size:24px;
+font-size:22px;
 color:#ddd;
-overflow:hidden;
-white-space:nowrap;
-border-right:3px solid #d580ff;
-width:0;
-margin-inline:auto;
-animation:typing 5s steps(40,end) infinite alternate;
 }
-
-@keyframes typing{
-from{width:0;}
-to{width:420px;}
-}
-
-/* BUTTON */
 
 .btn{
 display:inline-block;
@@ -183,25 +112,14 @@ text-decoration:none;
 border-radius:50px;
 font-size:20px;
 font-weight:bold;
-transition:0.4s;
 box-shadow:0 0 25px #a020f0;
-position:relative;
-overflow:hidden;
 }
-
-.btn:hover{
-transform:scale(1.08);
-box-shadow:0 0 45px #d580ff;
-}
-
-/* TITLES */
 
 .section-title{
 text-align:center;
-font-size:48px;
-margin:80px 0 40px;
+font-size:45px;
+margin:70px 0 40px;
 color:#e8b3ff;
-text-shadow:0 0 25px #a020f0;
 }
 
 /* GRID */
@@ -213,22 +131,17 @@ gap:30px;
 padding:0 35px;
 }
 
-/* CARD */
-
 .card{
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
 padding:28px;
 border-radius:28px;
-border:1px solid rgba(255,255,255,0.1);
-transition:0.5s;
 text-align:center;
+transition:.4s;
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.04);
-box-shadow:0 0 40px rgba(213,128,255,0.4);
-border-color:#d580ff;
+transform:translateY(-10px);
+box-shadow:0 0 30px #a020f0;
 }
 
 .card img{
@@ -238,14 +151,12 @@ margin-bottom:18px;
 }
 
 .card h3{
-font-size:26px;
-color:#f1ccff;
+font-size:25px;
 }
 
 .price{
-margin-top:12px;
+margin-top:10px;
 font-size:20px;
-color:#ddd;
 }
 
 /* PAYMENT */
@@ -259,22 +170,14 @@ text-align:center;
 max-width:700px;
 margin:auto;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
 padding:40px;
 border-radius:30px;
-border:1px solid rgba(255,255,255,0.1);
 box-shadow:0 0 35px rgba(160,32,240,0.35);
 }
 
 .payment-box h2{
-font-size:42px;
-color:#f1ccff;
+font-size:40px;
 margin-bottom:20px;
-}
-
-.payment-box p{
-font-size:22px;
-margin-top:10px;
 }
 
 /* FORM */
@@ -287,10 +190,8 @@ form{
 max-width:700px;
 margin:auto;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
 padding:40px;
 border-radius:30px;
-border:1px solid rgba(255,255,255,0.1);
 box-shadow:0 0 35px rgba(160,32,240,0.35);
 }
 
@@ -319,11 +220,6 @@ font-weight:bold;
 cursor:pointer;
 }
 
-button:hover{
-transform:scale(1.04);
-box-shadow:0 0 35px #d580ff;
-}
-
 /* POPUP */
 
 .popup{
@@ -331,7 +227,7 @@ position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%) scale(0);
-background:rgba(20,0,31,0.95);
+background:#12001f;
 padding:45px;
 border-radius:30px;
 text-align:center;
@@ -348,14 +244,12 @@ transform:translate(-50%,-50%) scale(1);
 
 .popup h2{
 font-size:38px;
-color:#f1ccff;
 margin-bottom:18px;
 }
 
 .popup p{
 font-size:19px;
 line-height:1.8;
-color:#ddd;
 }
 
 /* FOOTER */
@@ -368,21 +262,10 @@ background:#0d0016;
 border-top:2px solid #a020f0;
 }
 
-footer h3{
-font-size:30px;
-color:#e8b3ff;
-margin-bottom:10px;
-}
-
 @media(max-width:768px){
 
 header h1{
 font-size:45px;
-}
-
-.typing{
-font-size:18px;
-width:280px;
 }
 
 .logo{
@@ -391,7 +274,7 @@ height:150px;
 }
 
 .section-title{
-font-size:36px;
+font-size:35px;
 }
 
 }
@@ -461,7 +344,9 @@ Premium Graphic Design Services
 
 <p><b>01990756529</b></p>
 
-<p>✅ Send Payment Before Confirm Order</p>
+<p style="margin-top:15px;">
+✅ Send Payment Before Confirm Order
+</p>
 
 </div>
 
@@ -469,7 +354,9 @@ Premium Graphic Design Services
 
 <section class="order" id="order">
 
-<h2 class="section-title">Place Your Order</h2>
+<h2 class="section-title">
+Place Your Order
+</h2>
 
 <form id="orderForm">
 
@@ -484,11 +371,13 @@ Premium Graphic Design Services
 <option>Poster Design</option>
 </select>
 
-<textarea rows="5" id="details" placeholder="Describe your design"></textarea>
+<textarea id="description" rows="5" placeholder="Describe your design"></textarea>
 
 <input type="text" id="trx" placeholder="Bkash Transaction ID">
 
-<button type="submit">Confirm Order</button>
+<button type="submit">
+Confirm Order
+</button>
 
 </form>
 
@@ -516,35 +405,79 @@ Premium Graphic Design Services
 
 <h3>THE DESIGNER BD</h3>
 
-<p>Professional Premium Animated Website</p>
+<p style="margin-top:10px;">
+Professional Premium Animated Website
+</p>
 
 </footer>
 
+<!-- FIREBASE -->
+
 <script type="module">
 
-const form=document.getElementById("orderForm");
-const popup=document.getElementById("popup");
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-form.addEventListener("submit",async function(e){
+import {
+getFirestore,
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyCwR0szJFItDBVEQ2AmL5TzN1",
+
+authDomain: "the-designer-bd.firebaseapp.com",
+
+projectId: "the-designer-bd",
+
+storageBucket: "the-designer-bd.appspot.com",
+
+messagingSenderId: "828995401927",
+
+appId: "1:828995401927:web:f91e1bd9aeed"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const form = document.getElementById("orderForm");
+
+const popup = document.getElementById("popup");
+
+form.addEventListener("submit", async (e)=>{
 
 e.preventDefault();
 
-const data = {
+const orderData = {
+
 name:document.getElementById("name").value,
+
 email:document.getElementById("email").value,
+
 service:document.getElementById("service").value,
-details:document.getElementById("details").value,
-trx:document.getElementById("trx").value
+
+description:document.getElementById("description").value,
+
+trx:document.getElementById("trx").value,
+
+time:new Date()
+
 };
 
-await window.saveOrder(data);
+await addDoc(collection(db,"orders"),orderData);
 
 popup.classList.add("active");
 
 setTimeout(()=>{
+
 popup.classList.remove("active");
+
 form.reset();
-},6000);
+
+},5000);
 
 });
 
