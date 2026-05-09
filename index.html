@@ -1,294 +1,507 @@
 
-<!DOCTYPE html>
+ <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>THE DESIGNER BD</title>
 
 <style>
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 font-family:Arial,sans-serif;
+
 scroll-behavior:smooth;
+
 }
 
 body{
-background:#06000d;
+
+background:#05000a;
+
 color:white;
+
 overflow-x:hidden;
+
+position:relative;
+
 }
 
-/* BACKGROUND */
+/* LUFFY BACKGROUND */
 
 body::before{
+
 content:"";
+
 position:fixed;
-width:200%;
-height:200%;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
 background:
-radial-gradient(circle,#a020f033 10%,transparent 10%),
-radial-gradient(circle,#d580ff22 10%,transparent 10%);
-background-size:120px 120px;
-animation:bgmove 18s linear infinite;
-z-index:-3;
+
+linear-gradient(rgba(5,0,10,.82),rgba(5,0,10,.88)),
+
+url('https://images.alphacoders.com/136/1361812.jpeg');
+
+background-size:cover;
+
+background-position:center;
+
+z-index:-5;
+
+animation:bgzoom 18s infinite alternate;
+
 }
 
-@keyframes bgmove{
-0%{transform:translate(0,0);}
-100%{transform:translate(-120px,-120px);}
+@keyframes bgzoom{
+
+0%{transform:scale(1);}
+
+100%{transform:scale(1.08);}
+
 }
 
-/* LIGHTS */
+/* PARTICLES */
 
-.light{
+.particle{
+
 position:fixed;
+
 width:8px;
+
 height:8px;
+
 background:#d580ff;
+
 border-radius:50%;
-box-shadow:0 0 20px #d580ff;
-animation:floatLight 8s linear infinite;
-opacity:.6;
+
+box-shadow:0 0 25px #d580ff;
+
+animation:float 10s linear infinite;
+
+opacity:.7;
+
 z-index:-2;
+
 }
 
-@keyframes floatLight{
+@keyframes float{
+
 0%{
+
 transform:translateY(100vh) scale(0);
+
 }
+
 100%{
-transform:translateY(-120vh) scale(1.5);
+
+transform:translateY(-120vh) scale(1.6);
+
 }
+
 }
 
 /* HEADER */
 
 header{
+
 text-align:center;
+
 padding:90px 20px;
-background:linear-gradient(135deg,#12001f,#25003d,#3f0066);
+
+background:linear-gradient(135deg,#12001fbb,#25003dcc,#3f0066bb);
+
+backdrop-filter:blur(10px);
+
 border-bottom:2px solid #a020f0;
+
 }
 
 .logo{
+
 width:190px;
+
 height:190px;
+
 border-radius:50%;
+
 object-fit:cover;
+
 animation:spin 10s linear infinite;
+
 box-shadow:0 0 45px #a020f0;
+
 border:4px solid #d580ff;
+
 }
 
 @keyframes spin{
+
 from{transform:rotate(0deg);}
+
 to{transform:rotate(360deg);}
+
 }
 
 header h1{
+
 font-size:65px;
+
 margin-top:25px;
-color:#e8b3ff;
-text-shadow:0 0 30px #a020f0;
+
+color:#f0c3ff;
+
+text-shadow:0 0 35px #a020f0;
+
 }
 
 .typing{
+
 margin-top:15px;
+
 font-size:22px;
+
 color:#ddd;
+
 }
 
 .btn{
+
 display:inline-block;
+
 margin-top:35px;
+
 padding:18px 45px;
+
 background:linear-gradient(45deg,#a020f0,#d580ff);
+
 color:white;
+
 text-decoration:none;
+
 border-radius:50px;
+
 font-size:20px;
+
 font-weight:bold;
+
 box-shadow:0 0 25px #a020f0;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{transform:scale(1);}
+
+50%{transform:scale(1.05);}
+
+100%{transform:scale(1);}
+
 }
 
 .section-title{
+
 text-align:center;
+
 font-size:45px;
+
 margin:70px 0 40px;
-color:#e8b3ff;
+
+color:#f0c3ff;
+
+text-shadow:0 0 20px #a020f0;
+
 }
 
 /* GRID */
 
 .grid{
+
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
 gap:30px;
+
 padding:0 35px;
+
 }
 
 .card{
-background:rgba(255,255,255,0.05);
+
+background:rgba(255,255,255,0.06);
+
 padding:28px;
+
 border-radius:28px;
+
 text-align:center;
-transition:.4s;
+
+transition:.5s;
+
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,.1);
+
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 30px #a020f0;
+
+transform:translateY(-15px) scale(1.03);
+
+box-shadow:0 0 40px #a020f0;
+
 }
 
 .card img{
+
 width:100%;
+
 border-radius:20px;
+
 margin-bottom:18px;
+
 }
 
 .card h3{
+
 font-size:25px;
+
 }
 
 .price{
+
 margin-top:10px;
+
 font-size:20px;
+
+color:#ffb3ff;
+
 }
 
 /* PAYMENT */
 
 .payment{
+
 padding:70px 20px;
+
 text-align:center;
+
 }
 
 .payment-box{
-max-width:700px;
-margin:auto;
-background:rgba(255,255,255,0.05);
-padding:40px;
-border-radius:30px;
-box-shadow:0 0 35px rgba(160,32,240,0.35);
-}
 
-.payment-box h2{
-font-size:40px;
-margin-bottom:20px;
+max-width:700px;
+
+margin:auto;
+
+background:rgba(255,255,255,0.06);
+
+padding:40px;
+
+border-radius:30px;
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 0 35px rgba(160,32,240,0.35);
+
 }
 
 /* FORM */
 
 .order{
+
 padding:70px 20px;
+
 }
 
 form{
+
 max-width:700px;
+
 margin:auto;
-background:rgba(255,255,255,0.05);
+
+background:rgba(255,255,255,0.06);
+
 padding:40px;
+
 border-radius:30px;
+
+backdrop-filter:blur(10px);
+
 box-shadow:0 0 35px rgba(160,32,240,0.35);
+
 }
 
 input,textarea,select{
+
 width:100%;
+
 padding:18px;
+
 margin-top:18px;
+
 border:none;
+
 border-radius:16px;
+
 background:#12001f;
+
 color:white;
+
 font-size:17px;
+
 outline:none;
+
 }
 
 button{
+
 width:100%;
+
 padding:18px;
+
 margin-top:25px;
+
 border:none;
+
 border-radius:50px;
+
 background:linear-gradient(45deg,#a020f0,#d580ff);
+
 color:white;
+
 font-size:20px;
+
 font-weight:bold;
+
 cursor:pointer;
+
+transition:.4s;
+
+}
+
+button:hover{
+
+transform:scale(1.03);
+
+box-shadow:0 0 30px #d580ff;
+
 }
 
 /* POPUP */
 
 .popup{
+
 position:fixed;
+
 top:50%;
+
 left:50%;
+
 transform:translate(-50%,-50%) scale(0);
+
 background:#12001f;
+
 padding:45px;
+
 border-radius:30px;
+
 text-align:center;
+
 width:90%;
+
 max-width:550px;
+
 z-index:999;
+
 box-shadow:0 0 50px rgba(213,128,255,0.5);
+
 transition:.4s;
+
 }
 
 .popup.active{
+
 transform:translate(-50%,-50%) scale(1);
-}
 
-.popup h2{
-font-size:38px;
-margin-bottom:18px;
 }
-
-.popup p{
-font-size:19px;
-line-height:1.8;
-}
-
-/* FOOTER */
 
 footer{
+
 text-align:center;
+
 padding:40px;
+
 margin-top:70px;
-background:#0d0016;
+
+background:#0d0016cc;
+
 border-top:2px solid #a020f0;
+
+backdrop-filter:blur(10px);
+
 }
 
 @media(max-width:768px){
 
 header h1{
-font-size:45px;
+
+font-size:42px;
+
 }
 
 .logo{
+
 width:150px;
+
 height:150px;
+
 }
 
 .section-title{
-font-size:35px;
+
+font-size:32px;
+
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="light" style="left:10%; animation-delay:0s;"></div>
-<div class="light" style="left:30%; animation-delay:2s;"></div>
-<div class="light" style="left:50%; animation-delay:4s;"></div>
-<div class="light" style="left:70%; animation-delay:1s;"></div>
-<div class="light" style="left:90%; animation-delay:3s;"></div>
+<div class="particle" style="left:10%;animation-delay:0s;"></div>
+
+<div class="particle" style="left:20%;animation-delay:2s;"></div>
+
+<div class="particle" style="left:40%;animation-delay:4s;"></div>
+
+<div class="particle" style="left:60%;animation-delay:1s;"></div>
+
+<div class="particle" style="left:80%;animation-delay:3s;"></div>
 
 <header>
 
@@ -297,7 +510,9 @@ font-size:35px;
 <h1>THE DESIGNER BD</h1>
 
 <div class="typing">
-Premium Graphic Design Services
+
+Premium Anime Graphic Design Services
+
 </div>
 
 <a href="#order" class="btn">ORDER NOW</a>
@@ -309,27 +524,43 @@ Premium Graphic Design Services
 <section class="grid">
 
 <div class="card">
+
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+
 <h3>Logo Design</h3>
+
 <p class="price">500৳</p>
+
 </div>
 
 <div class="card">
+
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+
 <h3>Banner Design</h3>
+
 <p class="price">400৳</p>
+
 </div>
 
 <div class="card">
+
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+
 <h3>Thumbnail Design</h3>
+
 <p class="price">300৳</p>
+
 </div>
 
 <div class="card">
+
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+
 <h3>Poster Design</h3>
+
 <p class="price">350৳</p>
+
 </div>
 
 </section>
@@ -342,11 +573,13 @@ Premium Graphic Design Services
 
 <p>📱 Bkash Number</p>
 
+<br>
+
 <p><b>01990756529</b></p>
 
-<p style="margin-top:15px;">
-✅ Send Payment Before Confirm Order
-</p>
+<br>
+
+<p>✅ Send Payment Before Confirm Order</p>
 
 </div>
 
@@ -355,7 +588,9 @@ Premium Graphic Design Services
 <section class="order" id="order">
 
 <h2 class="section-title">
+
 Place Your Order
+
 </h2>
 
 <form id="orderForm">
@@ -365,10 +600,15 @@ Place Your Order
 <input type="email" id="email" placeholder="Your Email" required>
 
 <select id="service" required>
+
 <option>Logo Design</option>
+
 <option>Banner Design</option>
+
 <option>Thumbnail Design</option>
+
 <option>Poster Design</option>
+
 </select>
 
 <textarea id="description" rows="5" placeholder="Describe your design"></textarea>
@@ -376,7 +616,9 @@ Place Your Order
 <input type="text" id="trx" placeholder="Bkash Transaction ID" required>
 
 <button type="submit">
+
 Confirm Order
+
 </button>
 
 </form>
@@ -406,74 +648,22 @@ Confirm Order
 <h3>THE DESIGNER BD</h3>
 
 <p style="margin-top:10px;">
-Professional Premium Animated Website
+
+Professional Anime Animated Website
+
 </p>
 
 </footer>
 
-<!-- EMAILJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<!-- FIREBASE + GMAIL -->
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyCwR0szJFItDBVEQ2AmL5TzN1",
-authDomain: "the-designer-bd.firebaseapp.com",
-projectId: "the-designer-bd",
-storageBucket: "the-designer-bd.appspot.com",
-messagingSenderId: "828995401927",
-appId: "1:828995401927:web:f91e1bd9aeed"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
+<script>
 
 const form = document.getElementById("orderForm");
 
 const popup = document.getElementById("popup");
 
-emailjs.init("ZmKVslMaVYKQNWXA6");
-
-form.addEventListener("submit", async (e)=>{
+form.addEventListener("submit",(e)=>{
 
 e.preventDefault();
-
-const orderData = {
-
-name: document.getElementById("name").value,
-email: document.getElementById("email").value,
-service: document.getElementById("service").value,
-description: document.getElementById("description").value,
-trx: document.getElementById("trx").value,
-time: new Date()
-
-};
-
-await addDoc(collection(db,"orders"),orderData);
-
-await emailjs.send(
-"service_jj7w73q",
-"template_h8h65hq",
-{
-name: orderData.name,
-email: orderData.email,
-service: orderData.service,
-description: orderData.description,
-trx: orderData.trx
-}
-);
 
 popup.classList.add("active");
 
@@ -490,4 +680,5 @@ form.reset();
 </script>
 
 </body>
+
 </html>
