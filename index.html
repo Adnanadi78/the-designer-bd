@@ -8,174 +8,299 @@
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
-background:#0d0d0d;
-color:white;
 scroll-behavior:smooth;
 }
 
+body{
+background:#0b0014;
+color:white;
+overflow-x:hidden;
+}
+
+/* ANIMATED BACKGROUND */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:
+radial-gradient(circle,#a020f033 10%,transparent 10%),
+radial-gradient(circle,#c56cff22 10%,transparent 10%);
+background-size:120px 120px;
+animation:bgmove 20s linear infinite;
+z-index:-1;
+}
+
+@keyframes bgmove{
+0%{transform:translate(0,0);}
+100%{transform:translate(-120px,-120px);}
+}
+
+/* HEADER */
+
 header{
-background:linear-gradient(135deg,#111,#1f1f1f);
-padding:40px 20px;
 text-align:center;
+padding:80px 20px;
+background:linear-gradient(135deg,#14001f,#25003a,#3d0052);
 border-bottom:2px solid #a020f0;
+animation:fadeIn 2s;
 }
 
 .banner{
 width:100%;
-border-radius:20px;
-margin-bottom:25px;
-box-shadow:0 0 25px rgba(160,32,240,0.5);
+max-width:900px;
+border-radius:25px;
+box-shadow:0 0 35px rgba(160,32,240,0.6);
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
 }
 
 header h1{
-font-size:55px;
-color:#c56cff;
-margin:10px 0;
-text-shadow:0 0 15px rgba(197,108,255,0.7);
+font-size:65px;
+margin-top:25px;
+color:#d580ff;
+text-shadow:0 0 25px #a020f0;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #a020f0;}
+to{text-shadow:0 0 35px #d580ff;}
 }
 
 header p{
-font-size:20px;
+font-size:22px;
+margin-top:10px;
 color:#ddd;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:15px 35px;
+margin-top:30px;
+padding:16px 40px;
 background:#a020f0;
 color:white;
 text-decoration:none;
 border-radius:50px;
-font-weight:bold;
 font-size:18px;
-transition:0.3s;
-box-shadow:0 0 20px rgba(160,32,240,0.6);
+font-weight:bold;
+transition:0.4s;
+animation:btnGlow 2s infinite alternate;
+}
+
+@keyframes btnGlow{
+from{box-shadow:0 0 10px #a020f0;}
+to{box-shadow:0 0 30px #d580ff;}
 }
 
 .btn:hover{
-background:#c56cff;
 transform:scale(1.08);
+background:#c56cff;
 }
 
-.services{
-padding:50px 20px;
-}
+/* SECTION TITLE */
 
-.services h2{
+.section-title{
 text-align:center;
-color:#c56cff;
-font-size:42px;
-margin-bottom:35px;
-text-shadow:0 0 12px rgba(197,108,255,0.6);
+font-size:45px;
+margin:70px 0 35px;
+color:#d580ff;
+text-shadow:0 0 20px #a020f0;
 }
+
+/* SERVICES */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
+padding:0 30px;
 }
 
 .card{
 background:#161616;
-padding:35px;
-border-radius:20px;
+padding:25px;
+border-radius:25px;
 text-align:center;
 border:1px solid #333;
-transition:0.3s;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
+transition:0.4s;
+position:relative;
+overflow:hidden;
+animation:fadeInUp 1s;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:-100%;
+left:-100%;
+width:200%;
+height:200%;
+background:linear-gradient(45deg,transparent,#a020f055,transparent);
+transform:rotate(25deg);
+transition:0.5s;
+}
+
+.card:hover::before{
+top:100%;
+left:100%;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-12px) scale(1.03);
 border-color:#a020f0;
-box-shadow:0 0 25px rgba(160,32,240,0.5);
+box-shadow:0 0 30px rgba(160,32,240,0.5);
 }
 
 .card img{
 width:100%;
-border-radius:15px;
+border-radius:18px;
 margin-bottom:15px;
 }
 
 .card h3{
-color:#c56cff;
-font-size:22px;
+color:#d580ff;
+font-size:24px;
 }
 
 .price{
-color:#aaa;
 margin-top:10px;
+color:#ccc;
+font-size:18px;
 }
 
-.order-btn{
+.select-btn{
 display:inline-block;
 margin-top:15px;
-padding:10px 20px;
+padding:12px 25px;
 background:#a020f0;
 color:white;
 text-decoration:none;
 border-radius:30px;
-font-size:15px;
+transition:0.3s;
 }
 
-.payment{
-padding:50px 20px;
-text-align:center;
-background:#111;
-margin-top:40px;
+.select-btn:hover{
+background:#c56cff;
 }
 
-.payment h2{
-color:#c56cff;
-font-size:40px;
+/* ORDER FORM */
+
+.order{
+padding:60px 20px;
 }
 
-.payment-box{
-max-width:500px;
+form{
+max-width:650px;
 margin:auto;
 background:#161616;
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(160,32,240,0.4);
+padding:35px;
+border-radius:25px;
+border:1px solid #333;
+box-shadow:0 0 25px rgba(160,32,240,0.3);
+animation:fadeIn 1.5s;
 }
 
-.payment-box input,
-.payment-box select{
+input,textarea,select{
 width:100%;
-padding:15px;
+padding:16px;
 margin-top:15px;
 border:none;
-border-radius:10px;
-background:#222;
+border-radius:14px;
+background:#0d0d0d;
 color:white;
 font-size:16px;
+outline:none;
 }
 
-.payment-box button{
+button{
+width:100%;
+padding:16px;
 margin-top:20px;
-padding:15px 30px;
+border:none;
 background:#a020f0;
 color:white;
-border:none;
-border-radius:30px;
 font-size:18px;
-font-weight:bold;
+border-radius:40px;
+cursor:pointer;
+transition:0.3s;
 }
+
+button:hover{
+background:#c56cff;
+transform:scale(1.03);
+}
+
+/* ORDER DISPLAY */
+
+#orders{
+max-width:750px;
+margin:40px auto;
+padding:0 20px;
+}
+
+.order-box{
+background:#161616;
+padding:25px;
+margin-top:20px;
+border-radius:20px;
+border:1px solid #333;
+animation:fadeInUp 1s;
+}
+
+.order-box h3{
+color:#d580ff;
+margin-bottom:10px;
+}
+
+/* FOOTER */
 
 footer{
 text-align:center;
-padding:30px;
+padding:35px;
+margin-top:60px;
 background:#111;
-margin-top:40px;
-border-top:1px solid #333;
+border-top:2px solid #a020f0;
 }
 
 footer h3{
-color:#c56cff;
+color:#d580ff;
+margin-bottom:10px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes fadeInUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 </style>
@@ -191,81 +316,105 @@ color:#c56cff;
 
 <p>Professional Graphic Design Services</p>
 
-<a class="btn" href="#payment">Order Now</a>
+<a href="#order" class="btn">ORDER NOW</a>
 
 </header>
 
-<section class="services">
+<h2 class="section-title">Our Services</h2>
 
-<h2>Our Services</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
-<h3>YouTube Thumbnail</h3>
-<p class="price">Price: 300৳</p>
-<a class="order-btn" href="#payment">Select</a>
-</div>
+<section class="grid">
 
 <div class="card">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Logo Design</h3>
-<p class="price">Price: 500৳</p>
-<a class="order-btn" href="#payment">Select</a>
+<p class="price">500৳</p>
+<a href="#order" class="select-btn">Select</a>
 </div>
 
 <div class="card">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
-<h3>Facebook Banner</h3>
-<p class="price">Price: 400৳</p>
-<a class="order-btn" href="#payment">Select</a>
+<h3>Banner Design</h3>
+<p class="price">400৳</p>
+<a href="#order" class="select-btn">Select</a>
+</div>
+
+<div class="card">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
+<h3>Thumbnail Design</h3>
+<p class="price">300৳</p>
+<a href="#order" class="select-btn">Select</a>
 </div>
 
 <div class="card">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Poster Design</h3>
-<p class="price">Price: 350৳</p>
-<a class="order-btn" href="#payment">Select</a>
-</div>
-
+<p class="price">350৳</p>
+<a href="#order" class="select-btn">Select</a>
 </div>
 
 </section>
 
-<section class="payment" id="payment">
+<section class="order" id="order">
 
-<h2>Confirm Your Order</h2>
+<h2 class="section-title">Place Your Order</h2>
 
-<div class="payment-box">
+<form id="orderForm">
 
-<input type="text" placeholder="Your Name">
+<input type="text" id="name" placeholder="Your Name" required>
 
-<input type="text" placeholder="Your Facebook / WhatsApp">
-
-<select>
-<option>Select Service</option>
-<option>YouTube Thumbnail</option>
+<select id="service">
 <option>Logo Design</option>
-<option>Facebook Banner</option>
+<option>Banner Design</option>
+<option>Thumbnail Design</option>
 <option>Poster Design</option>
 </select>
 
-<input type="text" placeholder="Payment Number">
+<textarea id="details" rows="5" placeholder="Describe your design"></textarea>
 
-<button>Confirm Order</button>
+<button type="submit">Confirm Order</button>
 
-</div>
+</form>
 
 </section>
+
+<div id="orders"></div>
 
 <footer>
 
 <h3>THE DESIGNER BD</h3>
 
-<p>HD Quality | Fast Delivery | 24/7 Support</p>
+<p>Premium Animated Graphic Design Website</p>
 
 </footer>
+
+<script>
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let service=document.getElementById("service").value;
+let details=document.getElementById("details").value;
+
+let box=document.createElement("div");
+
+box.classList.add("order-box");
+
+box.innerHTML=`
+<h3>New Order Received</h3>
+<p><b>Name:</b> ${name}</p>
+<p><b>Service:</b> ${service}</p>
+<p><b>Details:</b> ${details}</p>
+`;
+
+document.getElementById("orders").appendChild(box);
+
+document.getElementById("orderForm").reset();
+
+});
+
+</script>
 
 </body>
 </html>
