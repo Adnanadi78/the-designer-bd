@@ -411,8 +411,10 @@ Professional Premium Animated Website
 
 </footer>
 
-<!-- FIREBASE -->
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<!-- FIREBASE + GMAIL -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -426,15 +428,10 @@ addDoc
 const firebaseConfig = {
 
 apiKey: "AIzaSyCwR0szJFItDBVEQ2AmL5TzN1",
-
 authDomain: "the-designer-bd.firebaseapp.com",
-
 projectId: "the-designer-bd",
-
 storageBucket: "the-designer-bd.appspot.com",
-
 messagingSenderId: "828995401927",
-
 appId: "1:828995401927:web:f91e1bd9aeed"
 
 };
@@ -447,27 +444,36 @@ const form = document.getElementById("orderForm");
 
 const popup = document.getElementById("popup");
 
+emailjs.init("ZmKVslMaVYKQNWXA6");
+
 form.addEventListener("submit", async (e)=>{
 
 e.preventDefault();
 
 const orderData = {
 
-name:document.getElementById("name").value,
-
-email:document.getElementById("email").value,
-
-service:document.getElementById("service").value,
-
-description:document.getElementById("description").value,
-
-trx:document.getElementById("trx").value,
-
-time:new Date()
+name: document.getElementById("name").value,
+email: document.getElementById("email").value,
+service: document.getElementById("service").value,
+description: document.getElementById("description").value,
+trx: document.getElementById("trx").value,
+time: new Date()
 
 };
 
 await addDoc(collection(db,"orders"),orderData);
+
+await emailjs.send(
+"service_jj7w73q",
+"template_h8h65hq",
+{
+name: orderData.name,
+email: orderData.email,
+service: orderData.service,
+description: orderData.description,
+trx: orderData.trx
+}
+);
 
 popup.classList.add("active");
 
