@@ -436,23 +436,37 @@ document.getElementById("order")
 }
 
 document.getElementById("orderForm")
-.addEventListener("submit",async(e)=>{
+.addEventListener("submit", async (e) => {
 
 e.preventDefault();
 
-const name=document.getElementById("name").value;
+const submitBtn = document.querySelector("form button");
 
-const whatsapp=document.getElementById("whatsapp").value;
+submitBtn.innerText = "Processing...";
 
-const service=document.getElementById("service").value;
+const name = document.getElementById("name").value;
 
-const price=document.getElementById("selectedPrice").value;
+const whatsapp = document.getElementById("whatsapp").value;
 
-const trx=document.getElementById("trx").value;
+const service = document.getElementById("service").value;
 
-const details=document.getElementById("details").value;
+const price = document.getElementById("selectedPrice").value;
 
-try{
+const trx = document.getElementById("trx").value;
+
+const details = document.getElementById("details").value;
+
+if(!trx){
+
+alert("❌ Transaction ID Required!");
+
+submitBtn.innerText = "CONFIRM ORDER";
+
+return;
+
+}
+
+try {
 
 await addDoc(collection(db,"orders"),{
 
@@ -479,6 +493,24 @@ details:details
 }
 );
 
+alert("✅ Order Confirmed Successfully!\n⏰ Delivery Time: 24-48 Hours");
+
+document.getElementById("orderForm").reset();
+
+submitBtn.innerText = "CONFIRM ORDER";
+
+}
+catch(error){
+
+console.log(error);
+
+alert("❌ Something Went Wrong!");
+
+submitBtn.innerText = "CONFIRM ORDER";
+
+}
+
+});
 alert("✅ Order Submitted Successfully!");
 
 document.getElementById("orderForm").reset();
