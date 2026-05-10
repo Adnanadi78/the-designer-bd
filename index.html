@@ -279,7 +279,7 @@ gap:15px;
 <nav>
 
 <div class="logo">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" alt="THE DESIGNER BD Logo">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h2>THE DESIGNER BD</h2>
 </div>
 
@@ -310,7 +310,7 @@ Affordable Price & Professional Quality.
 </div>
 
 <div class="hero-image">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" alt="THE DESIGNER BD Logo">
+<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 </div>
 
 </section>
@@ -394,9 +394,37 @@ Affordable Price & Professional Quality.
 
 </footer>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-function selectService(service,price){
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_AUTH_DOMAIN",
+projectId: "YOUR_PROJECT_ID",
+storageBucket: "YOUR_STORAGE_BUCKET",
+messagingSenderId: "YOUR_MESSAGING_ID",
+appId: "YOUR_APP_ID"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+emailjs.init("YOUR_PUBLIC_KEY");
+
+window.selectService=function(service,price){
 
 document.getElementById("service").value=service;
 
@@ -406,6 +434,62 @@ document.getElementById("order")
 .scrollIntoView({behavior:"smooth"});
 
 }
+
+document.getElementById("orderForm")
+.addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const name=document.getElementById("name").value;
+
+const whatsapp=document.getElementById("whatsapp").value;
+
+const service=document.getElementById("service").value;
+
+const price=document.getElementById("selectedPrice").value;
+
+const trx=document.getElementById("trx").value;
+
+const details=document.getElementById("details").value;
+
+try{
+
+await addDoc(collection(db,"orders"),{
+
+name,
+whatsapp,
+service,
+price,
+trx,
+details,
+time:new Date()
+
+});
+
+await emailjs.send(
+"service_jj7w73q",
+"template_h8h65hq",
+{
+name:name,
+whatsapp:whatsapp,
+service:service,
+price:price,
+trx:trx,
+details:details
+}
+);
+
+alert("✅ Order Submitted Successfully!");
+
+document.getElementById("orderForm").reset();
+
+}catch(error){
+
+alert("❌ Error: "+error);
+
+}
+
+});
 
 </script>
 
