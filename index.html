@@ -6,341 +6,358 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE DESIGNER BD</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
-scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#140000,#2b0000,#550000,#990000);
-background-size:400% 400%;
-animation:bgMove 10s ease infinite;
+background:#070707;
 color:white;
 overflow-x:hidden;
 }
 
-@keyframes bgMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
+/* Background Animation */
 
-.particle{
+body::before{
+content:'';
 position:fixed;
-width:12px;
-height:12px;
-background:white;
-border-radius:50%;
-opacity:.4;
-animation:float 15s linear infinite;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top left,#ff000040,transparent 40%),
+radial-gradient(circle at bottom right,#ff000020,transparent 40%);
 z-index:-1;
+animation:bgMove 8s linear infinite alternate;
 }
 
-@keyframes float{
-0%{
-transform:translateY(100vh) scale(0);
-}
-100%{
-transform:translateY(-120vh) scale(1.5);
-}
+@keyframes bgMove{
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
 }
 
-/* HEADER */
+/* Navbar */
 
-header{
-text-align:center;
-padding:90px 20px;
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:#0d0d0d;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:1px solid #ff000030;
 }
 
 .logo{
-width:180px;
-height:180px;
-border-radius:50%;
-object-fit:cover;
-border:5px solid red;
-box-shadow:
-0 0 20px red,
-0 0 50px #ff2222,
-0 0 80px #ff4444;
-animation:logoMove 5s ease-in-out infinite alternate;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-@keyframes logoMove{
-0%{
-transform:translateX(-30px) rotate(-10deg);
-}
-100%{
-transform:translateX(30px) rotate(10deg);
-}
+.logo img{
+width:60px;
+animation:floatLogo 3s ease-in-out infinite;
 }
 
-header h1{
-font-size:60px;
-margin-top:25px;
+@keyframes floatLogo{
+0%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0);}
+}
+
+.logo h2{
+color:#fff;
+font-size:24px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#ff2d2d;
+}
+
+/* Hero */
+
+.hero{
+padding:100px 8%;
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+}
+
+.hero-text{
+flex:1;
+min-width:300px;
+}
+
+.hero-text h1{
+font-size:65px;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero-text h1 span{
+color:#ff1a1a;
 text-shadow:0 0 20px red;
 }
 
-.typing{
-margin-top:15px;
-font-size:24px;
-color:white;
+.hero-text p{
+font-size:18px;
+color:#ccc;
+margin-bottom:30px;
+}
+
+.hero-buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .btn{
-display:inline-block;
-margin-top:35px;
-padding:18px 45px;
+padding:15px 35px;
+border:none;
 border-radius:50px;
-background:red;
+background:linear-gradient(45deg,#ff0000,#ff4d4d);
 color:white;
-text-decoration:none;
-font-size:20px;
 font-weight:bold;
-box-shadow:0 0 20px red;
-transition:.4s;
+cursor:pointer;
+box-shadow:0 0 20px #ff000080;
+transition:.3s;
+text-decoration:none;
 }
 
 .btn:hover{
-transform:scale(1.08);
-background:#ff2222;
+transform:scale(1.05);
+}
+
+.btn2{
+background:transparent;
+border:2px solid red;
+}
+
+.hero-image{
+flex:1;
+min-width:300px;
+text-align:center;
+}
+
+.hero-image img{
+width:100%;
+max-width:500px;
+animation:float 4s ease-in-out infinite;
+filter:drop-shadow(0 0 30px red);
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+/* Services */
+
+.services{
+padding:80px 8%;
 }
 
 .section-title{
 text-align:center;
 font-size:45px;
-margin:70px 0 40px;
-text-shadow:0 0 15px red;
+margin-bottom:50px;
 }
 
-.grid{
+.section-title span{
+color:red;
+}
+
+.service-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
-padding:0 25px;
 }
 
 .card{
-background:rgba(255,255,255,0.08);
-padding:25px;
-border-radius:25px;
-text-align:center;
-backdrop-filter:blur(10px);
+background:#111;
+padding:30px;
+border-radius:20px;
+border:1px solid #ff000030;
 transition:.4s;
 cursor:pointer;
 }
 
 .card:hover{
 transform:translateY(-10px);
-box-shadow:0 0 30px red;
-}
-
-.card img{
-width:100%;
-border-radius:20px;
-margin-bottom:15px;
+box-shadow:0 0 25px #ff000050;
 }
 
 .card h3{
-font-size:25px;
 margin-bottom:10px;
+font-size:25px;
+}
+
+.card p{
+color:#bbb;
+margin-bottom:15px;
 }
 
 .price{
 font-size:22px;
-color:#ffcc00;
+color:#ff2d2d;
+font-weight:bold;
 }
 
-.payment{
-padding:70px 20px;
-}
-
-.payment-box{
-max-width:650px;
-margin:auto;
-padding:40px;
-border-radius:30px;
-background:rgba(255,255,255,0.08);
-text-align:center;
-box-shadow:0 0 25px red;
-}
+/* Order Section */
 
 .order{
-padding:70px 20px;
+padding:80px 8%;
 }
 
 form{
+background:#111;
+padding:40px;
+border-radius:20px;
 max-width:700px;
 margin:auto;
-background:rgba(255,255,255,0.08);
-padding:40px;
-border-radius:30px;
-box-shadow:0 0 25px red;
+border:1px solid #ff000030;
 }
 
-input,
-textarea,
-select{
+form input,
+form select,
+form textarea{
 width:100%;
-padding:18px;
-margin-top:18px;
+padding:15px;
+margin-top:15px;
+background:#1b1b1b;
 border:none;
-border-radius:15px;
-background:#111;
-color:white;
-font-size:16px;
 outline:none;
-}
-
-button{
-width:100%;
-padding:18px;
-margin-top:25px;
-border:none;
-border-radius:50px;
-background:red;
+border-radius:10px;
 color:white;
-font-size:20px;
-font-weight:bold;
-cursor:pointer;
-transition:.4s;
 }
 
-button:hover{
-background:#ff2222;
-transform:scale(1.03);
-}
-
-#selectedPrice{
-text-align:center;
+form button{
 margin-top:20px;
-font-size:30px;
-color:#ffcc00;
-font-weight:bold;
+width:100%;
 }
 
-.popup{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(0);
-background:#111;
-padding:40px;
-border-radius:25px;
+.note{
+margin-top:20px;
+color:#ff5555;
+font-size:14px;
 text-align:center;
-width:90%;
-max-width:500px;
-z-index:999;
-transition:.4s;
-box-shadow:0 0 40px red;
 }
 
-.popup.active{
-transform:translate(-50%,-50%) scale(1);
-}
+/* Footer */
 
 footer{
+padding:40px 8%;
 text-align:center;
-padding:40px;
-margin-top:60px;
-background:#0a0a0a;
+background:#0d0d0d;
+margin-top:80px;
+border-top:1px solid #ff000020;
 }
+
+/* Mobile */
 
 @media(max-width:768px){
 
-header h1{
-font-size:40px;
+.hero-text h1{
+font-size:45px;
 }
 
-.logo{
-width:140px;
-height:140px;
-}
-
-.section-title{
-font-size:32px;
+nav{
+flex-direction:column;
+gap:15px;
 }
 
 }
 
 </style>
 </head>
-
 <body>
 
-<div class="particle" style="left:10%;animation-delay:0s;"></div>
-<div class="particle" style="left:30%;animation-delay:2s;"></div>
-<div class="particle" style="left:50%;animation-delay:4s;"></div>
-<div class="particle" style="left:70%;animation-delay:1s;"></div>
-<div class="particle" style="left:90%;animation-delay:3s;"></div>
+<nav>
 
-<header>
-
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png" class="logo">
-
-<h1>THE DESIGNER BD</h1>
-
-<div class="typing">
-Premium Professional Graphic Design Services
+<div class="logo">
+<img src="logo.png">
+<h2>THE DESIGNER BD</h2>
 </div>
 
+<div>
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#order">Order</a>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>PROFESSIONAL <span>DESIGN</span> SERVICES</h1>
+
+<p>
+Premium Graphic Design Services With Fast Delivery,
+Affordable Price & Professional Quality.
+</p>
+
+<div class="hero-buttons">
 <a href="#order" class="btn">ORDER NOW</a>
-
-</header>
-
-<h2 class="section-title">
-OUR SERVICES
-</h2>
-
-<section class="grid">
-
-<div class="card" onclick="selectService('Logo Design','500৳')">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
-<h3>Logo Design</h3>
-<p class="price">500৳</p>
+<a href="https://wa.me/8801704599698" class="btn btn2">WHATSAPP</a>
 </div>
 
-<div class="card" onclick="selectService('Thumbnail Design','300৳')">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
-<h3>Thumbnail Design</h3>
-<p class="price">300৳</p>
 </div>
 
-<div class="card" onclick="selectService('Banner Design','400৳')">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
-<h3>Banner Design</h3>
-<p class="price">400৳</p>
-</div>
-
-<div class="card" onclick="selectService('Poster Design','350৳')">
-<img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
-<h3>Poster Design</h3>
-<p class="price">350৳</p>
+<div class="hero-image">
+<img src="logo.png">
 </div>
 
 </section>
 
-<section class="payment">
+<section class="services" id="services">
 
-<div class="payment-box">
+<h2 class="section-title">OUR <span>SERVICES</span></h2>
 
-<h2>Payment Method</h2>
+<div class="service-grid">
 
-<br>
+<div class="card" onclick="selectService('Logo Design','500৳')">
+<h3>Logo Design</h3>
+<p>Modern Professional Brand Logo</p>
+<div class="price">500৳</div>
+</div>
 
-<p>📱 Bkash Number</p>
+<div class="card" onclick="selectService('YouTube Thumbnail','300৳')">
+<h3>YouTube Thumbnail</h3>
+<p>High CTR Premium Thumbnail</p>
+<div class="price">300৳</div>
+</div>
 
-<br>
+<div class="card" onclick="selectService('Banner Design','400৳')">
+<h3>Banner Design</h3>
+<p>Professional Social Banner</p>
+<div class="price">400৳</div>
+</div>
 
-<h1>01990756529</h1>
-
-<br>
-
-<p>✅ Payment First Then Confirm Order</p>
+<div class="card" onclick="selectService('Social Media Post','250৳')">
+<h3>Social Media Post</h3>
+<p>Creative Business Post Design</p>
+<div class="price">250৳</div>
+</div>
 
 </div>
 
@@ -348,73 +365,54 @@ OUR SERVICES
 
 <section class="order" id="order">
 
-<h2 class="section-title">
-PLACE YOUR ORDER
-</h2>
-
-<h2 id="selectedPrice">
-Select a Service
-</h2>
+<h2 class="section-title">PLACE <span>ORDER</span></h2>
 
 <form id="orderForm">
 
 <input type="text" id="name" placeholder="Your Name" required>
 
-<input type="email" id="email" placeholder="Your Email" required>
-
 <input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
 
 <select id="service" required>
+
 <option value="">Select Service</option>
+
 <option>Logo Design</option>
-<option>Thumbnail Design</option>
+<option>YouTube Thumbnail</option>
 <option>Banner Design</option>
-<option>Poster Design</option>
+<option>Social Media Post</option>
+
 </select>
 
-<textarea id="description" rows="5" placeholder="Describe Your Design"></textarea>
+<input type="text" id="selectedPrice" placeholder="Price" readonly>
 
-<input type="text" id="trx" placeholder="Bkash Transaction ID" required>
+<input type="text" id="trx" placeholder="Bkash/Nagad Transaction ID" required>
 
-<button type="submit">
-CONFIRM ORDER
-</button>
+<textarea id="details" rows="5" placeholder="Project Details"></textarea>
+
+<button class="btn" type="submit">CONFIRM ORDER</button>
+
+<div class="note">
+⚠ Order will not be confirmed without valid transaction ID.<br>
+⏰ Delivery Time: 24 - 48 Hours
+</div>
 
 </form>
 
 </section>
 
-<div class="popup" id="popup">
-
-<h2>🎉 ORDER CONFIRMED</h2>
-
-<br>
-
-<p>
-✅ Order saved successfully<br><br>
-📧 Email notification sent<br><br>
-💾 Firebase database updated<br><br>
-📦 Delivery Time: 24-48 Hours<br><br>
-💜 Thank you for choosing THE DESIGNER BD
-</p>
-
-</div>
-
 <footer>
 
 <h2>THE DESIGNER BD</h2>
-
-<p style="margin-top:10px;">
-Professional Animated Website
-</p>
+<p>Premium Professional Graphic Design Services</p>
 
 </footer>
 
-<!-- EMAILJS -->
+<!-- EmailJS -->
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<!-- FIREBASE -->
+<!-- Firebase -->
 
 <script type="module">
 
@@ -424,100 +422,95 @@ import {
 getFirestore,
 collection,
 addDoc
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyBRgismJ4gNAQGMea3aYedw_nTfVxNJrkA",
-authDomain: "the-designer-bd-7f699.firebaseapp.com",
-projectId: "the-designer-bd-7f699",
-storageBucket: "the-designer-bd-7f699.firebasestorage.app",
-messagingSenderId: "914795043973",
-appId: "1:914795043973:web:516b998315bfd8cd729dec",
-measurementId: "G-33Y2GXZ7DY"
+
+apiKey: "YOUR_API_KEY",
+
+authDomain: "YOUR_AUTH_DOMAIN",
+
+projectId: "YOUR_PROJECT_ID",
+
+storageBucket: "YOUR_STORAGE_BUCKET",
+
+messagingSenderId: "YOUR_MESSAGING_ID",
+
+appId: "YOUR_APP_ID"
+
 };
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-emailjs.init("ZmKVslMaVYKQNWXA6");
+emailjs.init("YOUR_PUBLIC_KEY");
 
-window.selectService = function(service,price){
+window.selectService=function(service,price){
 
-document.getElementById("service").value = service;
+document.getElementById("service").value=service;
 
-document.getElementById("selectedPrice").innerText = "Price: " + price;
+document.getElementById("selectedPrice").value=price;
 
-document.getElementById("order").scrollIntoView({
-behavior:"smooth"
-});
+document.getElementById("order")
+.scrollIntoView({behavior:"smooth"});
 
 }
 
-const form = document.getElementById("orderForm");
-
-const popup = document.getElementById("popup");
-
-form.addEventListener("submit", async (e)=>{
+document.getElementById("orderForm")
+.addEventListener("submit",async(e)=>{
 
 e.preventDefault();
 
-const trx = document.getElementById("trx").value;
+const name=document.getElementById("name").value;
 
-if(trx.trim() === ""){
+const whatsapp=document.getElementById("whatsapp").value;
 
-alert("Please enter transaction ID");
+const service=document.getElementById("service").value;
 
-return;
+const price=document.getElementById("selectedPrice").value;
 
-}
+const trx=document.getElementById("trx").value;
 
-const orderData = {
+const details=document.getElementById("details").value;
 
-name:document.getElementById("name").value,
+try{
 
-email:document.getElementById("email").value,
+await addDoc(collection(db,"orders"),{
 
-whatsapp:document.getElementById("whatsapp").value,
+name,
+whatsapp,
+service,
+price,
+trx,
+details,
+time:new Date()
 
-service:document.getElementById("service").value,
+});
 
-description:document.getElementById("description").value,
-
-trx:trx,
-
-time:new Date().toLocaleString()
-
-};
-
-await addDoc(collection(db,"orders"),orderData);
-
-emailjs.send(
+await emailjs.send(
 "service_jj7w73q",
 "template_h8h65hq",
 {
-name: orderData.name,
-email: orderData.email,
-message:
-"New Order Received\n\n" +
-"WhatsApp: " + orderData.whatsapp + "\n" +
-"Service: " + orderData.service + "\n" +
-"Transaction ID: " + orderData.trx + "\n" +
-"Description: " + orderData.description
+name:name,
+whatsapp:whatsapp,
+service:service,
+price:price,
+trx:trx,
+details:details
 }
 );
 
-popup.classList.add("active");
+alert("✅ Order Submitted Successfully!");
 
-setTimeout(()=>{
+document.getElementById("orderForm").reset();
 
-popup.classList.remove("active");
+}catch(error){
 
-form.reset();
+alert("❌ Error: "+error);
 
-document.getElementById("selectedPrice").innerText = "Select a Service";
-
-},5000);
+}
 
 });
 
