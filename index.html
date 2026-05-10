@@ -30,8 +30,6 @@ overflow-x:hidden;
 100%{background-position:0% 50%;}
 }
 
-/* PARTICLES */
-
 .particle{
 position:fixed;
 width:12px;
@@ -64,12 +62,12 @@ width:180px;
 height:180px;
 border-radius:50%;
 object-fit:cover;
-border:5px solid #ff0000;
+border:5px solid red;
 box-shadow:
 0 0 20px red,
 0 0 50px #ff2222,
 0 0 80px #ff4444;
-animation:logoMove 6s ease-in-out infinite alternate;
+animation:logoMove 5s ease-in-out infinite alternate;
 }
 
 @keyframes logoMove{
@@ -90,10 +88,8 @@ text-shadow:0 0 20px red;
 .typing{
 margin-top:15px;
 font-size:24px;
-color:#fff;
+color:white;
 }
-
-/* BUTTON */
 
 .btn{
 display:inline-block;
@@ -113,8 +109,6 @@ transition:.4s;
 transform:scale(1.08);
 background:#ff2222;
 }
-
-/* SECTION */
 
 .section-title{
 text-align:center;
@@ -137,6 +131,7 @@ border-radius:25px;
 text-align:center;
 backdrop-filter:blur(10px);
 transition:.4s;
+cursor:pointer;
 }
 
 .card:hover{
@@ -160,8 +155,6 @@ font-size:22px;
 color:#ffcc00;
 }
 
-/* PAYMENT */
-
 .payment{
 padding:70px 20px;
 }
@@ -175,8 +168,6 @@ background:rgba(255,255,255,0.08);
 text-align:center;
 box-shadow:0 0 25px red;
 }
-
-/* FORM */
 
 .order{
 padding:70px 20px;
@@ -224,7 +215,13 @@ background:#ff2222;
 transform:scale(1.03);
 }
 
-/* POPUP */
+#selectedPrice{
+text-align:center;
+margin-top:20px;
+font-size:30px;
+color:#ffcc00;
+font-weight:bold;
+}
 
 .popup{
 position:fixed;
@@ -246,16 +243,12 @@ box-shadow:0 0 40px red;
 transform:translate(-50%,-50%) scale(1);
 }
 
-/* FOOTER */
-
 footer{
 text-align:center;
 padding:40px;
 margin-top:60px;
 background:#0a0a0a;
 }
-
-/* RESPONSIVE */
 
 @media(max-width:768px){
 
@@ -305,25 +298,25 @@ OUR SERVICES
 
 <section class="grid">
 
-<div class="card">
+<div class="card" onclick="selectService('Logo Design','500৳')">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Logo Design</h3>
 <p class="price">500৳</p>
 </div>
 
-<div class="card">
+<div class="card" onclick="selectService('Thumbnail Design','300৳')">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Thumbnail Design</h3>
 <p class="price">300৳</p>
 </div>
 
-<div class="card">
+<div class="card" onclick="selectService('Banner Design','400৳')">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Banner Design</h3>
 <p class="price">400৳</p>
 </div>
 
-<div class="card">
+<div class="card" onclick="selectService('Poster Design','350৳')">
 <img src="AC048F5E-1C15-45FD-9D50-D89A3386D7AB.png">
 <h3>Poster Design</h3>
 <p class="price">350৳</p>
@@ -359,6 +352,10 @@ OUR SERVICES
 PLACE YOUR ORDER
 </h2>
 
+<h2 id="selectedPrice">
+Select a Service
+</h2>
+
 <form id="orderForm">
 
 <input type="text" id="name" placeholder="Your Name" required>
@@ -368,6 +365,7 @@ PLACE YOUR ORDER
 <input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
 
 <select id="service" required>
+<option value="">Select Service</option>
 <option>Logo Design</option>
 <option>Thumbnail Design</option>
 <option>Banner Design</option>
@@ -396,6 +394,7 @@ CONFIRM ORDER
 ✅ Order saved successfully<br><br>
 📧 Email notification sent<br><br>
 💾 Firebase database updated<br><br>
+📦 Delivery Time: 24-48 Hours<br><br>
 💜 Thank you for choosing THE DESIGNER BD
 </p>
 
@@ -443,6 +442,18 @@ const db = getFirestore(app);
 
 emailjs.init("ZmKVslMaVYKQNWXA6");
 
+window.selectService = function(service,price){
+
+document.getElementById("service").value = service;
+
+document.getElementById("selectedPrice").innerText = "Price: " + price;
+
+document.getElementById("order").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
 const form = document.getElementById("orderForm");
 
 const popup = document.getElementById("popup");
@@ -450,6 +461,16 @@ const popup = document.getElementById("popup");
 form.addEventListener("submit", async (e)=>{
 
 e.preventDefault();
+
+const trx = document.getElementById("trx").value;
+
+if(trx.trim() === ""){
+
+alert("Please enter transaction ID");
+
+return;
+
+}
 
 const orderData = {
 
@@ -463,17 +484,13 @@ service:document.getElementById("service").value,
 
 description:document.getElementById("description").value,
 
-trx:document.getElementById("trx").value,
+trx:trx,
 
 time:new Date().toLocaleString()
 
 };
 
-/* SAVE TO FIREBASE */
-
 await addDoc(collection(db,"orders"),orderData);
-
-/* SEND EMAIL */
 
 emailjs.send(
 "service_jj7w73q",
@@ -490,8 +507,6 @@ message:
 }
 );
 
-/* POPUP */
-
 popup.classList.add("active");
 
 setTimeout(()=>{
@@ -499,6 +514,8 @@ setTimeout(()=>{
 popup.classList.remove("active");
 
 form.reset();
+
+document.getElementById("selectedPrice").innerText = "Select a Service";
 
 },5000);
 
